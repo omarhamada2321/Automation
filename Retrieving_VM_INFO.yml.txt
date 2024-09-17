@@ -1,0 +1,16 @@
+- name: Retrieve VM Information
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Get VM Info
+      community.vmware.vmware_guest_info:
+        hostname: vcenter.example.com
+        username: your_username
+        password: your_password
+        validate_certs: no
+        name: my-existing-vm
+      register: vm_info
+
+    - name: Show VM Info
+      debug:
+        msg: "{{ vm_info }}"

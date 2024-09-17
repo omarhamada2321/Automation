@@ -1,0 +1,13 @@
+- name: Manage VM Power State
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Power Off VM
+      community.vmware.vmware_guest_powerstate:
+        hostname: vcenter.example.com
+        username: your_username
+        password: your_password
+        validate_certs: no
+        name: my-existing-vm
+        state: powered_off
+      delegate_to: localhost

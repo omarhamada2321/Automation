@@ -1,0 +1,24 @@
+- name: Create a new VM in vCenter
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Create VM
+      community.vmware.vmware_guest:
+        hostname: vcenter.example.com
+        username: your_username
+        password: your_password
+        validate_certs: no
+        name: my-new-vm
+        state: powered_on
+        template: my-template
+        cluster: my-cluster
+        datastore: my-datastore
+        networks:
+          - name: my-network
+        hardware:
+          memory_mb: 2048
+          num_cpus: 2
+        disk:
+          - size_gb: 20
+            type: thin
+      delegate_to: localhost
